@@ -1,17 +1,7 @@
-import {View} from 'react-native';
-import Feed from './src/screens/Feed';
-import Comments from './src/screens/Comments';
-import Profile from './src/screens/Profile';
-import EditProfile from './src/screens/EditProfile';
-import Upload from './src/screens/PostUpload';
-import styles from './styles';
+import Navigation from './src/navigation';
 
 const App = () => {
-  return (
-    <View style={styles.app}>
-      <Upload />
-    </View>
-  );
+  return <Navigation />;
 };
 
 export default App;
