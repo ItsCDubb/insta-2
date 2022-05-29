@@ -1,13 +1,15 @@
+import {RouteProp} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
-import {RouteProp} from '@react-navigation/native';
 
-export type RootNavigator = {
+export type RootNavigatorParamList = {
   Home: undefined;
   Comments: {postId: string};
+  Auth: undefined;
+  EditProfile: undefined;
 };
 
-export type BottomTabNavigationParamList = {
+export type BottomTabNavigatorParamList = {
   HomeStack: undefined;
   Search: undefined;
   Upload: undefined;
@@ -15,20 +17,63 @@ export type BottomTabNavigationParamList = {
   MyProfile: undefined;
 };
 
-export type MyNavigationProp = BottomTabNavigationProp<
-  BottomTabNavigationParamList,
+export type SearchTabNavigatorParamList = {
+  Users: undefined;
+  Posts: undefined;
+};
+
+export type UploadStackNavigatorParamList = {
+  Camera: undefined;
+  Create: {
+    image?: string;
+    images?: string[];
+    video?: string;
+  };
+};
+
+export type CameraNavigationProp = NativeStackNavigationProp<
+  UploadStackNavigatorParamList,
+  'Camera'
+>;
+
+export type CreateNavigationProp = NativeStackNavigationProp<
+  UploadStackNavigatorParamList,
+  'Create'
+>;
+
+export type CreateRouteProp = RouteProp<
+  UploadStackNavigatorParamList,
+  'Create'
+>;
+
+export type CommentsRouteProp = RouteProp<RootNavigatorParamList, 'Comments'>;
+
+export type MyProfileNavigationProp = BottomTabNavigationProp<
+  BottomTabNavigatorParamList,
   'MyProfile'
 >;
 
 export type MyProfileRouteProp = RouteProp<
-  BottomTabNavigationParamList,
+  BottomTabNavigatorParamList,
   'MyProfile'
 >;
 
 export type HomeStackNavigatorParamList = {
-  Home: undefined;
+  Feed: undefined;
   UserProfile: {userId: string};
+  UpdatePost: {id: string};
+  PostLikes: {id: string};
 };
+
+export type PostLikesRouteProp = RouteProp<
+  HomeStackNavigatorParamList,
+  'PostLikes'
+>;
+
+export type UpdatePostRouteProp = RouteProp<
+  HomeStackNavigatorParamList,
+  'UpdatePost'
+>;
 
 export type UserProfileNavigationProp = NativeStackNavigationProp<
   HomeStackNavigatorParamList,
@@ -42,7 +87,7 @@ export type UserProfileRouteProp = RouteProp<
 
 export type FeedNavigationProp = NativeStackNavigationProp<
   HomeStackNavigatorParamList,
-  'Home'
+  'Feed'
 >;
 
 export type ProfileStackNavigatorParamList = {
@@ -50,7 +95,45 @@ export type ProfileStackNavigatorParamList = {
   'Edit Profile': undefined;
 };
 
-export type ProfileStackNavigationProp = NativeStackNavigationProp<
+export type ProfileNavigationProp = NativeStackNavigationProp<
   ProfileStackNavigatorParamList,
   'Profile'
+>;
+
+// Auth Stack Navigator
+export type AuthStackNavigatorParamList = {
+  'Sign in': undefined;
+  'Sign up': undefined;
+  'Confirm email': {email?: string};
+  'Forgot password': undefined;
+  'New password': undefined;
+};
+
+export type SignInNavigationProp = NativeStackNavigationProp<
+  AuthStackNavigatorParamList,
+  'Sign in'
+>;
+
+export type SignUpNavigationProp = NativeStackNavigationProp<
+  AuthStackNavigatorParamList,
+  'Sign up'
+>;
+
+export type ConfirmEmailNavigationProp = NativeStackNavigationProp<
+  AuthStackNavigatorParamList,
+  'Confirm email'
+>;
+export type ConfirmEmailRouteProp = RouteProp<
+  AuthStackNavigatorParamList,
+  'Confirm email'
+>;
+
+export type ForgotPasswordNavigationProp = NativeStackNavigationProp<
+  AuthStackNavigatorParamList,
+  'Forgot password'
+>;
+
+export type NewPasswordNavigationProp = NativeStackNavigationProp<
+  AuthStackNavigatorParamList,
+  'New password'
 >;
