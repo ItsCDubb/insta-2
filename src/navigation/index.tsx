@@ -1,34 +1,23 @@
-import {Image} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import Feed from '../screens/Feed';
-import Profile from '../screens/Profile';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Logo from '../assets/images/logo.png';
+import BottomTabs from './BottomTabs';
+import Comments from '../screens/Comments';
+import {RootNavigator} from './types';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootNavigator>();
 
 const Navigation = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Feed">
+      <Stack.Navigator initialRouteName="BottomTabNavigation">
         <Stack.Screen
-          name="Feed"
-          component={Feed}
-          options={{headerTitleAlign: 'center', headerTitle: Header}}
+          name="BottomTabNavigation"
+          component={BottomTabs}
+          options={{headerShown: false}}
         />
-        <Stack.Screen name="UserProfile" component={Profile} />
+        <Stack.Screen name="Comments" component={Comments} />
       </Stack.Navigator>
     </NavigationContainer>
-  );
-};
-
-const Header = () => {
-  return (
-    <Image
-      source={Logo}
-      resizeMode="contain"
-      style={{height: 40, width: 150}}
-    />
   );
 };
 
