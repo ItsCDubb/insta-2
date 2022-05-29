@@ -47,7 +47,7 @@ const PostUpload = () => {
     getPermission();
   }, []);
   const flipCamera = () => {
-    setCameraType(
+    setCameraType(currentCameraType =>
       currentCameraType === CameraType.back
         ? CameraType.front
         : CameraType.back,
