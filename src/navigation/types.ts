@@ -3,7 +3,7 @@ import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 import {RouteProp} from '@react-navigation/native';
 
 export type RootNavigator = {
-  BottomTabNavigation: undefined;
+  Home: undefined;
   Comments: {postId: string};
 };
 
@@ -26,7 +26,7 @@ export type MyProfileRouteProp = RouteProp<
 >;
 
 export type HomeStackNavigatorParamList = {
-  Feed: undefined;
+  Home: undefined;
   UserProfile: {userId: string};
 };
 
@@ -42,7 +42,7 @@ export type UserProfileRouteProp = RouteProp<
 
 export type FeedNavigationProp = NativeStackNavigationProp<
   HomeStackNavigatorParamList,
-  'Feed'
+  'Home'
 >;
 
 export type ProfileStackNavigatorParamList = {

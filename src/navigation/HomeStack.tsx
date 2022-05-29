@@ -11,7 +11,7 @@ const HomeStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Feed"
+        name="Home"
         component={Feed}
         options={{headerTitle: Header, headerTitleAlign: 'center'}}
       />

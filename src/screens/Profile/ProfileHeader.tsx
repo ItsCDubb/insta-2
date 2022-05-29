@@ -2,11 +2,11 @@ import {Image, Text, View} from 'react-native';
 import Button from '../../components/Button';
 import user from '../../assets/data/user.json';
 import {useNavigation} from '@react-navigation/native';
-import {ProfileStackNavigationProp} from '../../navigation/types';
+import {ProfileStackNavigatorParamList} from '../../navigation/types';
 import styles from './styles';
 
 const ProfileHeader = () => {
-  const navigation = useNavigation<ProfileStackNavigationProp>();
+  const navigation = useNavigation<ProfileStackNavigatorParamList>();
   return (
     <View style={styles.root}>
       <View style={styles.headerRow}>
