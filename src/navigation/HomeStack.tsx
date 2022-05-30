@@ -18,7 +18,7 @@ const HomeStack = () => {
       <Stack.Screen
         name="UserProfile"
         component={ProfileStack}
-        options={{title: 'Profile'}}
+        options={{headerShown: false}}
       />
     </Stack.Navigator>
   );

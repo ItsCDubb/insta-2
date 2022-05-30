@@ -11,9 +11,7 @@ const ProfileStack = () => {
       <Stack.Screen
         name="Profile"
         component={Profile}
-        options={{
-          headerShown: false,
-        }}
+        options={{headerShown: false}}
       />
       <Stack.Screen name="Edit Profile" component={EditProfile} />
     </Stack.Navigator>

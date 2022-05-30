@@ -34,6 +34,7 @@ const BottomTabs = () => {
         name="Search"
         component={SearchTabs}
         options={{
+          headerShown: false,
           tabBarIcon: ({color, size}) => (
             <MaterialIcons name="search" size={size} color={color} />
           ),
