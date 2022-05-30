@@ -2,11 +2,11 @@ import {LinkingOptions, NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import BottomTabs from './BottomTabs';
 import Comments from '../screens/Comments';
-import {RootNavigator} from './types';
+import {RootNavigatorParamList} from './types';
 
-const Stack = createNativeStackNavigator<RootNavigator>();
+const Stack = createNativeStackNavigator<RootNavigatorParamList>();
 
-const linking: LinkingOptions<RootNavigator> = {
+const linking: LinkingOptions<RootNavigatorParamList> = {
   prefixes: ['notjustphotos://', 'https://notjustphotos.com'],
   config: {
     initialRouteName: 'Home',

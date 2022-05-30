@@ -7,9 +7,10 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import colors from '../theme/colors';
 import HomeStack from './HomeStack';
 import ProfileStack from './ProfileStack';
-import {BottomTabNavigationParamList} from './types';
+import {BottomTabNavigatorParamList} from './types';
+import SearchTabs from './SearchTabs';
 
-const Tab = createBottomTabNavigator<BottomTabNavigationParamList>();
+const Tab = createBottomTabNavigator<BottomTabNavigatorParamList>();
 
 const BottomTabs = () => {
   return (
@@ -31,7 +32,7 @@ const BottomTabs = () => {
       />
       <Tab.Screen
         name="Search"
-        component={Comments}
+        component={SearchTabs}
         options={{
           tabBarIcon: ({color, size}) => (
             <MaterialIcons name="search" size={size} color={color} />

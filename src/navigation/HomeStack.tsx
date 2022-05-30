@@ -1,9 +1,9 @@
 import {Image} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Feed from '../screens/Feed';
-import Profile from '../screens/Profile';
 import Logo from '../assets/images/logo.png';
 import {HomeStackNavigatorParamList} from './types';
+import ProfileStack from './ProfileStack';
 
 const Stack = createNativeStackNavigator<HomeStackNavigatorParamList>();
 
@@ -11,13 +11,13 @@ const HomeStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Home"
+        name="Feed"
         component={Feed}
         options={{headerTitle: Header, headerTitleAlign: 'center'}}
       />
       <Stack.Screen
         name="UserProfile"
-        component={Profile}
+        component={ProfileStack}
         options={{title: 'Profile'}}
       />
     </Stack.Navigator>

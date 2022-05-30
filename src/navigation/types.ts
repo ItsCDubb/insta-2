@@ -100,7 +100,7 @@ export type ProfileNavigationProp = NativeStackNavigationProp<
   'Profile'
 >;
 
-// Auth Stack Navigator
+// Auth Stack Navigation
 export type AuthStackNavigatorParamList = {
   'Sign in': undefined;
   'Sign up': undefined;
