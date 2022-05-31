@@ -2,7 +2,8 @@ import {Image, Text, View} from 'react-native';
 import Button from '../../components/Button';
 import user from '../../assets/data/user.json';
 import {useNavigation} from '@react-navigation/native';
-import {ProfileNavigationProp} from '../../navigation/types';
+import {ProfileNavigationProp} from '../../types/navigation';
+import {Auth} from 'aws-amplify';
 import styles from './styles';
 
 const ProfileHeader = () => {
@@ -36,10 +37,7 @@ const ProfileHeader = () => {
           text="Edit Profile"
           onPress={() => navigation.navigate('Edit Profile')}
         />
-        <Button
-          text="Another Button"
-          onPress={() => console.warn('Another Button')}
-        />
+        <Button text="Sign Out" onPress={() => Auth.signOut()} />
       </View>
     </View>
   );

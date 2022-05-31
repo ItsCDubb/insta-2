@@ -13,7 +13,7 @@ import Carousel from '../Carousel';
 import DoublePressable from '../DoublePressable';
 import VideoPlayer from '../VideoPlayer';
 import {useNavigation} from '@react-navigation/native';
-import {FeedNavigationProp} from '../../navigation/types';
+import {FeedNavigationProp} from '../../types/navigation';
 import styles from './styles';
 
 interface IFeedPost {

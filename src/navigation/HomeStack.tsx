@@ -2,7 +2,7 @@ import {Image} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Feed from '../screens/Feed';
 import Logo from '../assets/images/logo.png';
-import {HomeStackNavigatorParamList} from './types';
+import {HomeStackNavigatorParamList} from '../types/navigation';
 import ProfileStack from './ProfileStack';
 
 const Stack = createNativeStackNavigator<HomeStackNavigatorParamList>();
