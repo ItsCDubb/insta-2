@@ -2,15 +2,17 @@ import React, {useState} from 'react';
 import {Alert, ScrollView, Text, View} from 'react-native';
 import FormInput from '../components/FormInput';
 import CustomButton from '../components/CustomButton';
-import SocialSignInButtons from '../components/SocialSignInButtons';
 import {useNavigation} from '@react-navigation/native';
 import {useForm} from 'react-hook-form';
 import {NewPasswordNavigationProp} from '../../../types/navigation';
 import {Auth} from 'aws-amplify';
 import styles from './styles';
 
+const EMAIL_REGEX =
+  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
 type NewPasswordType = {
-  username: string;
+  email: string;
   code: string;
   password: string;
 };
@@ -20,17 +22,13 @@ const NewPasswordScreen = () => {
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation<NewPasswordNavigationProp>();
 
-  const onSubmitPressed = async ({
-    username,
-    code,
-    password,
-  }: NewPasswordType) => {
+  const onSubmitPressed = async ({email, code, password}: NewPasswordType) => {
     if (loading) {
       return;
     }
     setLoading(true);
     try {
-      await Auth.forgotPasswordSubmit(username, code, password);
+      await Auth.forgotPasswordSubmit(email, code, password);
       navigation.navigate('Sign in');
     } catch (e) {
       Alert.alert('Oops', (e as Error).message);
@@ -50,22 +48,25 @@ const NewPasswordScreen = () => {
         <Text style={styles.title}>Reset your password</Text>
 
         <FormInput
-          placeholder="Username"
-          name="username"
+          name="email"
+          placeholder="Email"
           control={control}
-          rules={{required: 'Username is required'}}
+          rules={{
+            required: 'Email is required',
+            pattern: {value: EMAIL_REGEX, message: 'Email is invalid'},
+          }}
         />
 
         <FormInput
-          placeholder="Code"
           name="code"
+          placeholder="Code"
           control={control}
           rules={{required: 'Code is required'}}
         />
 
         <FormInput
-          placeholder="Enter your new password"
           name="password"
+          placeholder="Enter your new password"
           control={control}
           secureTextEntry
           rules={{
