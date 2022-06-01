@@ -14,6 +14,7 @@ import {useForm} from 'react-hook-form';
 import {SignInNavigationProp} from '../../../types/navigation';
 import {Auth} from 'aws-amplify';
 import {useState} from 'react';
+import {useAuthContext} from '../../../contexts/AuthContext';
 import styles from './styles';
 
 type SignInData = {
@@ -26,15 +27,15 @@ const SignInScreen = () => {
   const navigation = useNavigation<SignInNavigationProp>();
   const [loading, setLoading] = useState(false);
   const {control, handleSubmit, reset} = useForm<SignInData>();
-
+  const {setUser} = useAuthContext();
   const onSignInPressed = async ({username, password}: SignInData) => {
     if (loading) {
       return;
     }
     setLoading(true);
     try {
-      const response = await Auth.signIn(username, password);
-      console.log(response);
+      const cognitoUser = await Auth.signIn(username, password);
+      setUser(cognitoUser);
     } catch (e) {
       if ((e as Error).name === 'UserNotConfirmedException') {
         navigation.navigate('Confirm email', {username});

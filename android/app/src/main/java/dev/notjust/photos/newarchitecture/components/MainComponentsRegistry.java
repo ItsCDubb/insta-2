@@ -1,4 +1,4 @@
-package com.instagramprepts.newarchitecture.components;
+package dev.notjust.photos.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;
