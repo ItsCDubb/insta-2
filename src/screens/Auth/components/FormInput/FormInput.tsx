@@ -1,6 +1,7 @@
-import React from "react";
-import { View, Text, TextInput, StyleSheet } from "react-native";
-import { Control, Controller, Path } from "react-hook-form";
+import React from 'react';
+import {View, Text, TextInput} from 'react-native';
+import {Control, Controller, Path} from 'react-hook-form';
+import styles from './styles';
 
 interface ICustomInput<ContentType> {
   control: Control<ContentType, object>;
@@ -14,7 +15,7 @@ function CustomInput<ContentType>({
   control,
   name,
   rules = {},
-  placeholder = "",
+  placeholder = '',
   secureTextEntry = false,
 }: ICustomInput<ContentType>) {
   return (
@@ -22,17 +23,13 @@ function CustomInput<ContentType>({
       control={control}
       name={name}
       rules={rules}
-      render={({
-        field: { value, onChange, onBlur },
-        fieldState: { error },
-      }) => (
+      render={({field: {value, onChange, onBlur}, fieldState: {error}}) => (
         <>
           <View
             style={[
               styles.container,
-              { borderColor: error ? "red" : "#e8e8e8" },
-            ]}
-          >
+              {borderColor: error ? 'red' : '#e8e8e8'},
+            ]}>
             <TextInput
               value={value as string}
               onChangeText={onChange}
@@ -43,8 +40,8 @@ function CustomInput<ContentType>({
             />
           </View>
           {error && (
-            <Text style={{ color: "red", alignSelf: "stretch" }}>
-              {error.message || "Error"}
+            <Text style={{color: 'red', alignSelf: 'stretch'}}>
+              {error.message || 'Error'}
             </Text>
           )}
         </>
@@ -52,22 +49,5 @@ function CustomInput<ContentType>({
     />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "white",
-    width: "100%",
-
-    borderColor: "#e8e8e8",
-    borderWidth: 1,
-    borderRadius: 5,
-
-    paddingHorizontal: 10,
-    marginVertical: 5,
-  },
-  input: {
-    height: 50,
-  },
-});
 
 export default CustomInput;
