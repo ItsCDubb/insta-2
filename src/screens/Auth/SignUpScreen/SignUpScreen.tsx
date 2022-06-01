@@ -5,8 +5,8 @@ import SocialSignInButtons from '../components/SocialSignInButtons';
 import {useNavigation} from '@react-navigation/core';
 import {useForm} from 'react-hook-form';
 import {SignUpNavigationProp} from '../../../types/navigation';
-import {Auth} from 'aws-amplify';
 import {useState} from 'react';
+import {Auth} from 'aws-amplify';
 import styles from './styles';
 
 const EMAIL_REGEX =
@@ -18,9 +18,9 @@ type SignUpData = {
   name: string;
   email: string;
   username: string;
-  preferred_username: string;
   password: string;
   passwordRepeat: string;
+  preferred_username: string;
 };
 
 const SignUpScreen = () => {
@@ -28,7 +28,6 @@ const SignUpScreen = () => {
   const pwd = watch('password');
   const navigation = useNavigation<SignUpNavigationProp>();
   const [loading, setLoading] = useState(false);
-
   const onRegisterPressed = async ({
     name,
     email,
@@ -47,14 +46,12 @@ const SignUpScreen = () => {
         password,
         attributes: {name, email, preferred_username: username},
       });
-      console.log(response);
+      navigation.navigate('Confirm email', {username});
     } catch (e) {
       Alert.alert('Oops', (e as Error).message);
     } finally {
       setLoading(false);
     }
-
-    // navigation.navigate('Confirm email', { username });
   };
 
   const onSignInPress = () => {
@@ -92,7 +89,7 @@ const SignUpScreen = () => {
         />
 
         <FormInput
-          name="preferred_username"
+          name="username"
           control={control}
           placeholder="Username"
           rules={{
@@ -145,7 +142,7 @@ const SignUpScreen = () => {
         />
 
         <CustomButton
-          text={loading ? 'Loading...' : 'Register'}
+          text="Register"
           onPress={handleSubmit(onRegisterPressed)}
         />
 

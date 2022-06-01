@@ -25,7 +25,7 @@ const SignInScreen = () => {
   const {height} = useWindowDimensions();
   const navigation = useNavigation<SignInNavigationProp>();
   const [loading, setLoading] = useState(false);
-  const {control, handleSubmit} = useForm<SignInData>();
+  const {control, handleSubmit, reset} = useForm<SignInData>();
 
   const onSignInPressed = async ({username, password}: SignInData) => {
     if (loading) {
@@ -36,9 +36,14 @@ const SignInScreen = () => {
       const response = await Auth.signIn(username, password);
       console.log(response);
     } catch (e) {
-      Alert.alert('Oops', (e as Error).message);
+      if ((e as Error).name === 'UserNotConfirmedException') {
+        navigation.navigate('Confirm email', {username});
+      } else {
+        Alert.alert('Oops', (e as Error).message);
+      }
     } finally {
       setLoading(false);
+      reset();
     }
   };
 
