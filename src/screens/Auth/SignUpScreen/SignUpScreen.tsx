@@ -1,7 +1,7 @@
 import {Alert, ScrollView, Text, View} from 'react-native';
-import FormInput from '../components/FormInput';
-import CustomButton from '../components/CustomButton';
-import SocialSignInButtons from '../components/SocialSignInButtons';
+import FormInput from '../../../components/FormInput';
+import CustomButton from '../../../components/CustomButton';
+import SocialSignInButtons from '../../../components/SocialSignInButtons';
 import {useNavigation} from '@react-navigation/core';
 import {useForm} from 'react-hook-form';
 import {SignUpNavigationProp} from '../../../types/navigation';

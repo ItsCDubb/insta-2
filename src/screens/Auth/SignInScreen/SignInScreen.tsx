@@ -6,15 +6,14 @@ import {
   View,
 } from 'react-native';
 import Logo from '../../../assets/images/logo.png';
-import FormInput from '../components/FormInput';
-import CustomButton from '../components/CustomButton';
-import SocialSignInButtons from '../components/SocialSignInButtons';
+import FormInput from '../../../components/FormInput';
+import CustomButton from '../../../components/CustomButton';
+import SocialSignInButtons from '../../../components/SocialSignInButtons';
 import {useNavigation} from '@react-navigation/native';
 import {useForm} from 'react-hook-form';
 import {SignInNavigationProp} from '../../../types/navigation';
 import {Auth} from 'aws-amplify';
 import {useState} from 'react';
-import {useAuthContext} from '../../../contexts/AuthContext';
 import styles from './styles';
 
 const EMAIL_REGEX =
@@ -30,15 +29,14 @@ const SignInScreen = () => {
   const navigation = useNavigation<SignInNavigationProp>();
   const [loading, setLoading] = useState(false);
   const {control, handleSubmit, reset} = useForm<SignInData>();
-  const {setUser} = useAuthContext();
+
   const onSignInPressed = async ({email, password}: SignInData) => {
     if (loading) {
       return;
     }
     setLoading(true);
     try {
-      const cognitoUser = await Auth.signIn(email, password);
-      setUser(cognitoUser);
+      await Auth.signIn(email, password);
     } catch (e) {
       if ((e as Error).name === 'UserNotConfirmedException') {
         navigation.navigate('Confirm email', {email});

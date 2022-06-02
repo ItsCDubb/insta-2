@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {Alert, ScrollView, Text, View} from 'react-native';
-import FormInput from '../components/FormInput';
-import CustomButton from '../components/CustomButton';
+import FormInput from '../../../components/FormInput';
+import CustomButton from '../../../components/CustomButton';
 import {useNavigation} from '@react-navigation/native';
 import {useForm} from 'react-hook-form';
 import {NewPasswordNavigationProp} from '../../../types/navigation';
@@ -35,7 +35,6 @@ const NewPasswordScreen = () => {
     } finally {
       setLoading(false);
     }
-    // console.warn(data);
   };
 
   const onSignInPress = () => {
