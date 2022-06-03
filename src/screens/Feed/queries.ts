@@ -9,7 +9,6 @@ export const listPosts = gql`
     listPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        nonExistantField
         description
         image
         images
