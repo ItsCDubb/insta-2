@@ -13,5 +13,13 @@
   "triggerEventPath": "PostConfirmation.event.json",
   "roleName": "notjustdevinstagramPostConfirmation",
   "skipEdit": true,
-  "enableCors": false
+  "enableCors": false,
+  "permissions": {
+    "api": {
+      "notjustdevinstagram": [
+        "Query",
+        "Mutation"
+      ]
+    }
+  }
 }

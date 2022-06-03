@@ -4,7 +4,6 @@ import fonts from '../../theme/fonts';
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: 'center',
     margin: 5,
     padding: 5,

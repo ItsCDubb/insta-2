@@ -34,10 +34,11 @@ const ProfileHeader = () => {
       {/* Buttons */}
       <View style={{flexDirection: 'row'}}>
         <Button
+          inLine
           text="Edit Profile"
           onPress={() => navigation.navigate('Edit Profile')}
         />
-        <Button text="Sign Out" onPress={() => Auth.signOut()} />
+        <Button inLine text="Sign Out" onPress={() => Auth.signOut()} />
       </View>
     </View>
   );

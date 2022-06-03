@@ -43,6 +43,18 @@
     },
     "s3Key": {
       "Type": "String"
+    },
+    "apinotjustdevinstagramGraphQLAPIIdOutput": {
+      "Type": "String",
+      "Default": "apinotjustdevinstagramGraphQLAPIIdOutput"
+    },
+    "apinotjustdevinstagramGraphQLAPIEndpointOutput": {
+      "Type": "String",
+      "Default": "apinotjustdevinstagramGraphQLAPIEndpointOutput"
+    },
+    "apinotjustdevinstagramGraphQLAPIKeyOutput": {
+      "Type": "String",
+      "Default": "apinotjustdevinstagramGraphQLAPIKeyOutput"
     }
   },
   "Conditions": {
@@ -95,6 +107,15 @@
             },
             "GROUP": {
               "Ref": "GROUP"
+            },
+            "API_NOTJUSTDEVINSTAGRAM_GRAPHQLAPIIDOUTPUT": {
+              "Ref": "apinotjustdevinstagramGraphQLAPIIdOutput"
+            },
+            "API_NOTJUSTDEVINSTAGRAM_GRAPHQLAPIENDPOINTOUTPUT": {
+              "Ref": "apinotjustdevinstagramGraphQLAPIEndpointOutput"
+            },
+            "API_NOTJUSTDEVINSTAGRAM_GRAPHQLAPIKEYOUTPUT": {
+              "Ref": "apinotjustdevinstagramGraphQLAPIKeyOutput"
             }
           }
         },
@@ -193,6 +214,123 @@
                   }
                 ]
               }
+            }
+          ]
+        }
+      }
+    },
+    "AmplifyResourcesPolicy": {
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "amplify-lambda-execution-policy",
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "appsync:GraphQL"
+              ],
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:appsync:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":apis/",
+                      {
+                        "Ref": "apinotjustdevinstagramGraphQLAPIIdOutput"
+                      },
+                      "/types/Query/*"
+                    ]
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:appsync:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":apis/",
+                      {
+                        "Ref": "apinotjustdevinstagramGraphQLAPIIdOutput"
+                      },
+                      "/types/Mutation/*"
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "LambdaDynamoDbPolicy": {
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "dynamo-db-read-items-policy",
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:GetItem",
+                "dynamodb:PutItem"
+              ],
+              "Resource": [
+                {
+                  "Fn::Sub": [
+                    "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${tablename}",
+                    {
+                      "tablename": {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "User-",
+                            {
+                              "Ref": "apinotjustdevinstagramGraphQLAPIIdOutput"
+                            },
+                            "-",
+                            {
+                              "Ref": "env"
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }

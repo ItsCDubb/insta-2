@@ -1,4 +1,10 @@
-/**
+/* Amplify Params - DO NOT EDIT
+	API_NOTJUSTDEVINSTAGRAM_GRAPHQLAPIENDPOINTOUTPUT
+	API_NOTJUSTDEVINSTAGRAM_GRAPHQLAPIIDOUTPUT
+	API_NOTJUSTDEVINSTAGRAM_GRAPHQLAPIKEYOUTPUT
+	ENV
+	REGION
+Amplify Params - DO NOT EDIT *//**
  * @fileoverview
  *
  * This CloudFormation Trigger creates a handler which awaits the other handlers
