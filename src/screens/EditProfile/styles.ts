@@ -18,6 +18,12 @@ export default StyleSheet.create({
     fontSize: fonts.size.md,
     fontWeight: fonts.weight.semi,
   },
+  buttonDanger: {
+    color: colors.error,
+    margin: 10,
+    fontSize: fonts.size.md,
+    fontWeight: fonts.weight.semi,
+  },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -27,6 +33,7 @@ export default StyleSheet.create({
     width: 75,
   },
   input: {
+    minHeight: 50,
     borderColor: colors.border,
     borderBottomWidth: 1,
   },

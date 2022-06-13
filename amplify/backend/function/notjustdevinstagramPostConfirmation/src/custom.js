@@ -52,7 +52,7 @@ exports.handler = async (event, context) => {
     email,
     nofPosts: 0,
     nofFollowers: 0,
-    nofFollowings: 0,
+    nofFollowing: 0,
   };
   if (!event?.request?.userAttributes) {
     console.log('No user data available');
